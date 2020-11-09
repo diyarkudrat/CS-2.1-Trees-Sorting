@@ -24,3 +24,28 @@ def bucket_sort(numbers, num_buckets=10):
     # TODO: Sort each bucket using any sorting algorithm (recursive or another)
     # TODO: Loop over buckets and append each bucket's numbers into output list
     # FIXME: Improve this to mutate input instead of creating new output list
+
+    buckets = []
+    for i in range(len(numbers)):
+        buckets.append([])
+
+    for num in numbers:
+        bucketIndex = num * len(numbers) // (100 + 1)
+        buckets[bucketIndex].append(num)
+
+    for i in range(len(buckets)):
+        # USE SORTING ALGORITHM FROM RECURSIVE SORTING FILE
+        buckets[i] = sorted(buckets[i])
+
+    k = 0
+    for i in range(len(numbers)):
+        for j in range(len(buckets[i])):
+            numbers[k] = buckets[i][j]
+            k += 1
+    
+    return numbers
+
+    # sortedArray = []
+    # for bucket in buckets:
+    #     for item in bucket:
+    #         sortedArray.append(item)
