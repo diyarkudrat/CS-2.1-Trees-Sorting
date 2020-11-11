@@ -1,14 +1,41 @@
 #!python
 
 
-def merge(items1, items2):
+def merge(array, leftIdx, rightIdx, middle):
     """Merge given lists of items, each assumed to already be in sorted order,
     and return a new list containing all items in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
+    TODO: Running time: O(n + m) Why and under what conditions? Looping through every value in an array with length of n and another array with length of m
+    TODO: Memory usage: O(n) Why and under what conditions? we're storing n amount of values in a sorted list which takes up space
+    """ 
     # TODO: Repeat until one list is empty
     # TODO: Find minimum item in both lists and append it to new list
     # TODO: Append remaining items in non-empty list to new list
+    leftHalf = array[leftIdx:middle + 1]
+    rightHalf = array[middle + 1: rightIdx + 1]
+
+    i = 0
+    j = 0
+    sortedArrayIdx = leftIdx
+
+    while i < len(leftHalf) and j < len(rightHalf):
+        if leftHalf[i] <= rightHalf[j]:
+            array[sortedArrayIdx] = leftHalf[i]
+            i += 1
+        else:
+            array[sortedArrayIdx] = rightHalf[j]
+            j += 1
+
+        sortedArrayIdx += 1
+
+    while i < len(leftHalf):
+        array[sortedArrayIdx] = leftHalf[i]
+        i += 1
+        sortedArrayIdx += 1
+
+    while j < len(rightHalf):
+        array[sortedArrayIdx] = rightHalf[j]
+        j += 1
+        sortedArrayIdx += 1
 
 
 def split_sort_merge(items):
@@ -22,7 +49,8 @@ def split_sort_merge(items):
     # TODO: Merge sorted halves into one list in sorted order
 
 
-def merge_sort(items):
+
+def merge_sort(array, leftIdx, rightIdx):
     """Sort given items by splitting list into two approximately equal halves,
     sorting each recursively, and merging results into a list in sorted order.
     TODO: Running time: ??? Why and under what conditions?
@@ -31,6 +59,13 @@ def merge_sort(items):
     # TODO: Split items list into approximately equal halves
     # TODO: Sort each half by recursively calling merge sort
     # TODO: Merge sorted halves into one list in sorted order
+    if leftIdx >= rightIdx:
+        return
+    
+    middle = (leftIdx + rightIdx) // 2
+    mergeSort(array, leftIdx, middle)
+    mergeSort(array, middle + 1, rightIdx)
+    merge(array, leftIdx, rightIdx, middle)
 
 
 def partition(items, low, high):
