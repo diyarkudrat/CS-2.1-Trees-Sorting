@@ -38,6 +38,7 @@ def merge(array, leftIdx, rightIdx, middle):
         sortedArrayIdx += 1
 
 
+
 def split_sort_merge(items):
     """Sort given items by splitting list into two approximately equal halves,
     sorting each with an iterative sorting algorithm, and merging results into
@@ -47,6 +48,9 @@ def split_sort_merge(items):
     # TODO: Split items list into approximately equal halves
     # TODO: Sort each half using any other sorting algorithm
     # TODO: Merge sorted halves into one list in sorted order
+    
+    
+
 
 
 
@@ -68,9 +72,9 @@ def merge_sort(array, leftIdx, rightIdx):
     merge(array, leftIdx, rightIdx, middle)
 
 
-def partition(items, low, high):
+def partition(items, start, high):
     """Return index `p` after in-place partitioning given items in range
-    `[low...high]` by choosing a pivot (TODO: document your method here) from
+    `[low...high]` by choosing a pivot (Pivot will be the first value of array) from
     that range, moving pivot into index `p`, items less than pivot into range
     `[low...p-1]`, and items greater than pivot into range `[p+1...high]`.
     TODO: Running time: ??? Why and under what conditions?
@@ -80,6 +84,25 @@ def partition(items, low, high):
     # TODO: Move items less than pivot into front of range [low...p-1]
     # TODO: Move items greater than pivot into back of range [p+1...high]
     # TODO: Move pivot item into final position [p] and return index p
+
+    pivot = items[start]
+    low = start + 1
+
+    while True:
+        while low <= high and items[low] <= pivot:
+            low += 1
+
+        while low <= high and items[high] >= pivot:
+            high -= 1
+
+        if low <= high:
+            items[low], items[high] = items[high], items[low]
+        else:
+            break
+            
+    items[start], items[high] = items[high], items[start]
+
+    return high
 
 
 def quick_sort(items, low=None, high=None):
@@ -92,3 +115,9 @@ def quick_sort(items, low=None, high=None):
     # TODO: Check if list or range is so small it's already sorted (base case)
     # TODO: Partition items in-place around a pivot and get index of pivot
     # TODO: Sort each sublist range by recursively calling quick sort
+    if low >= high:
+        return
+
+    p = partition(items, low, high)
+    quick_sort(items, low, p - 1)
+    quick_sort(items, p + 1, high)
