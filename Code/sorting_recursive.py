@@ -5,7 +5,7 @@ def merge(array, leftIdx, rightIdx, middle):
     """Merge given lists of items, each assumed to already be in sorted order,
     and return a new list containing all items in sorted order.
     TODO: Running time: O(n + m) Why and under what conditions? Looping through every value in an array with length of n and another array with length of m
-    TODO: Memory usage: O(n) Why and under what conditions? we're storing n amount of values in a sorted list which takes up space
+    TODO: Memory usage: O(1) Why and under what conditions? we're storing n amount of values in a sorted list which takes up space
     """ 
     # TODO: Repeat until one list is empty
     # TODO: Find minimum item in both lists and append it to new list
@@ -36,20 +36,6 @@ def merge(array, leftIdx, rightIdx, middle):
         array[sortedArrayIdx] = rightHalf[j]
         j += 1
         sortedArrayIdx += 1
-
-
-
-def split_sort_merge(items):
-    """Sort given items by splitting list into two approximately equal halves,
-    sorting each with an iterative sorting algorithm, and merging results into
-    a list in sorted order.
-    TODO: Running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
-    # TODO: Split items list into approximately equal halves
-    # TODO: Sort each half using any other sorting algorithm
-    # TODO: Merge sorted halves into one list in sorted order
-    
-    
 
 
 
@@ -108,9 +94,10 @@ def partition(items, start, high):
 def quick_sort(items, low=None, high=None):
     """Sort given items in place by partitioning items in range `[low...high]`
     around a pivot item and recursively sorting each remaining sublist range.
-    TODO: Best case running time: ??? Why and under what conditions?
-    TODO: Worst case running time: ??? Why and under what conditions?
-    TODO: Memory usage: ??? Why and under what conditions?"""
+    TODO: Best case running time: O(n * log n) Why and under what conditions? where the partitioning is even
+    TODO: Worst case running time: O(n^2) Why and under what conditions? where the partitioning is uneven due to how the pivot values are chosen
+    TODO: Memory usage: O(n) Why and under what conditions? because we are sorting the array in-place
+    """
     # TODO: Check if high and low range bounds have default values (not given)
     # TODO: Check if list or range is so small it's already sorted (base case)
     # TODO: Partition items in-place around a pivot and get index of pivot
