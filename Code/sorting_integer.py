@@ -12,6 +12,21 @@ def counting_sort(numbers):
     # TODO: Loop over counts and append that many numbers into output list
     # FIXME: Improve this to mutate input instead of creating new output list
 
+    htable = {}
+    sortedList = []
+
+    for num in numbers:
+        if num in htable:
+            htable[num] += 1
+        else:
+            htable[num] = 1
+
+    for k, index in sorted(htable.items()):
+        for i in range(index):
+            sortedList.append(k)
+
+    return sortedList
+
 
 def bucket_sort(numbers, num_buckets=10):
     """Sort given numbers by distributing into buckets representing subranges,
