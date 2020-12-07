@@ -49,7 +49,6 @@ def bucket_sort(numbers, num_buckets=10):
         buckets[bucketIndex].append(num)
 
     for i in range(len(buckets)):
-        # USE SORTING ALGORITHM FROM RECURSIVE SORTING FILE
         buckets[i] = sorted(buckets[i])
 
     k = 0
