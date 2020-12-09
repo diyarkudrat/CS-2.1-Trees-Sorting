@@ -68,6 +68,7 @@ class PrefixTree:
         # Match the empty string
         if len(string) == 0:
             return self.root, 0
+
         # Start with the root node
         node, depth = self.root, 0
         for char in string:
@@ -76,6 +77,7 @@ class PrefixTree:
                 depth += 1
             else:
                 return None, depth
+                
         return node, depth
 
     def complete(self, prefix):
